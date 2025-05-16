@@ -10,8 +10,9 @@
   top: 50%;
   right: 0;
   transform: translateY(-50%) translateX(100%);
-  transition: all 0.3s ease;
-  animation: slideIn 0.5s ease-out forwards;
+  transition: all 0.1s ease;
+  animation: slideIn 0.1s ease-out forwards;
+  animation-delay: 0.3s;
   z-index: 9999;
 }
 
@@ -36,7 +37,7 @@
   gap: 8px;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   height: 48px;
   width: auto;
   min-width: 140px;
@@ -58,7 +59,7 @@
   color: #fff;
   width: 18px;
   height: 18px;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .chat-button:hover .chat-button-icon {
@@ -107,7 +108,7 @@
   background: linear-gradient(135deg, #cc0000, #cc0000);
   border-radius: 32px 0 0 32px;
   opacity: 0;
-  animation: pulse 2s infinite;
+  animation: pulse 1s infinite;
   z-index: -1;
 }
 
@@ -126,7 +127,7 @@
   }
 }
 
-/* Chat Popup */
+/* Chat Popup (Fixed Height Layout) */
 .chat-popup {
   position: fixed;
   bottom: 20px;
@@ -140,6 +141,31 @@
   flex-direction: column;
   overflow: hidden;
   z-index: 10000;
+}
+
+/* Responsive Popup */
+@media (max-width: 768px) {
+  .chat-popup {
+    width: 90%;
+    right: 5%;
+    bottom: 15px;
+    height: 70vh;
+  }
+
+  .chat-button {
+    height: 40px;
+    min-width: 120px;
+    padding: 10px 14px;
+  }
+
+  .chat-button-text {
+    font-size: 13px;
+  }
+
+  .chat-button-icon {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 /* Chat Header */
@@ -161,7 +187,7 @@
   font-size: 18px;
 }
 
-/* Chat Messages Area */
+/* Chat Messages Area (scrollable) */
 .chat-popup-messages {
   flex: 1;
   padding: 16px;
@@ -177,8 +203,6 @@
   border-top: 1px solid #eee;
   background: #fff;
   flex-shrink: 0;
-  z-index: 10001;
-  padding-bottom: calc(10px + env(safe-area-inset-bottom));
 }
 
 /* Send Button */
@@ -190,11 +214,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   margin-left: 8px;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .custom-send-button:hover {
@@ -261,206 +280,4 @@
   color: #888;
 }
 
-/* Dismiss Button */
-.dismiss-button {
-  position: absolute;
-  top: -12px;
-  right: 8px;
-  background: linear-gradient(135deg, #ff4d4f, #d9363e);
-  border: none;
-  color: #fff;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  font-size: 14px;
-}
 
-.dismiss-button:hover {
-  background: linear-gradient(135deg, #ff7875, #e04c47);
-  transform: scale(1.15);
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
-}
-
-.dismiss-button:active {
-  transform: scale(1);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Chat Toggle Container */
-.chat-toggle-container {
-  position: fixed;
-  bottom: calc(20px + env(safe-area-inset-bottom));
-  right: 20px;
-  z-index: 9999;
-}
-
-/* Chat Toggle Button */
-.chat-toggle-button {
-  background: linear-gradient(135deg, #cc0000, #cc0000);
-  border: none;
-  color: #fff;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
-}
-
-.chat-toggle-button:hover {
-  background: linear-gradient(135deg, #a80000, #e60000);
-  transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .chat-popup {
-    width: 90%;
-    right: 5%;
-    bottom: calc(70px + env(safe-area-inset-bottom));
-    height: 60vh;
-    max-height: 500px;
-    z-index: 10000;
-  }
-
-  .chat-button {
-    height: 44px;
-    min-width: 120px;
-    padding: 10px 14px;
-  }
-
-  .chat-button-text {
-    font-size: 13px;
-  }
-
-  .chat-button-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .dismiss-button {
-    width: 26px;
-    height: 26px;
-    top: -10px;
-    right: 6px;
-    font-size: 13px;
-  }
-
-  .chat-toggle-button {
-    width: 40px;
-    height: 40px;
-  }
-
-  .chat-popup-header {
-    padding: 10px 14px;
-    height: 36px;
-    font-size: 14px;
-  }
-
-  .chat-popup-close {
-    font-size: 16px;
-  }
-
-  .chat-popup-messages {
-    padding: 12px;
-  }
-
-  .bot-avatar {
-    width: 28px;
-    height: 28px;
-    margin-right: 6px;
-  }
-
-  .bot-message,
-  .user-message {
-    font-size: 13px;
-    padding: 8px 12px;
-  }
-
-  .custom-send-button {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-@media (max-width: 480px) {
-  .chat-popup {
-    width: 95%;
-    right: 2.5%;
-    top: 20%;
-    bottom: auto;
-    height: 50vh;
-    max-height: 400px;
-  }
-
-  .chat-button {
-    height: 40px;
-    min-width: 100px;
-    padding: 8px 12px;
-  }
-
-  .chat-button-text {
-    font-size: 12px;
-  }
-
-  .chat-button-icon {
-    width: 14px;
-    height: 14px;
-  }
-
-  .dismiss-button {
-    width: 24px;
-    height: 24px;
-    top: -8px;
-    right: 4px;
-    font-size: 12px;
-  }
-
-  .chat-toggle-button {
-    width: 36px;
-    height: 36px;
-  }
-
-  .chat-popup-header {
-    padding: 8px 12px;
-    height: 32px;
-    font-size: 13px;
-  }
-
-  .chat-popup-close {
-    font-size: 14px;
-  }
-
-  .chat-popup-messages {
-    padding: 10px;
-  }
-
-  .bot-avatar {
-    width: 24px;
-    height: 24px;
-    margin-right: 5px;
-  }
-
-  .bot-message,
-  .user-message {
-    font-size: 12px;
-    padding: 7px 10px;
-  }
-
-  .custom-send-button {
-    width: 36px;
-    height: 36px;
-  }
-
-  .chat-popup-input {
-    padding: 8px;
-  }
-}
